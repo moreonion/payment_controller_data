@@ -1,0 +1,7 @@
+name = Payment controller data
+description = Store payment's $method->controller_data in a serialized column.
+core = 7.x
+php = 5.6
+
+dependencies[] = payment
+
