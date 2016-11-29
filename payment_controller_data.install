@@ -9,7 +9,6 @@ function payment_controller_data_schema_alter(&$schema) {
     'type' => 'text',
     'serialize' => TRUE,
     'not null' => TRUE,
-    'default', serialize([]),
   ];
 }
 
@@ -24,8 +23,15 @@ function payment_controller_data_install() {
     'description' => 'Serialized controller data',
     'type' => 'text',
     'serialize' => TRUE,
+  ]);
+  db_update('payment_method')->fields([
+    'controller_data' => serialize([]),
+  ])->execute();
+  db_change_field('payment_method', 'controller_data', 'controller_data', [
+    'description' => 'Serialized controller data',
+    'type' => 'text',
+    'serialize' => TRUE,
     'not null' => TRUE,
-    'default', serialize([]),
   ]);
 }
 
