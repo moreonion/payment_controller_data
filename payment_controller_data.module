@@ -1,1 +1,12 @@
 <?php
+
+use Drupal\little_helpers\ArrayConfig;
+
+/**
+ * Implements hook_payment_method_load().
+ */
+function payment_controller_data_payment_method_load($methods) {
+  foreach ($methods as $method) {
+    ArrayConfig::mergeDefaults($method->controller_data, $method->controller->controller_data_defaults);
+  }
+}
